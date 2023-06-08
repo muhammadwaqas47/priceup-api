@@ -20,4 +20,4 @@ const hardwareCategory = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("hardwareCategory", hardwareCategory);
+module.exports = mongoose.model("hardwareCategories", hardwareCategory);

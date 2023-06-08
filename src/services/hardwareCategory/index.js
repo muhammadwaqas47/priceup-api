@@ -1,11 +1,10 @@
-const HardwareCategory = require("../../models/hardwareCategory");
+const HardwareCategory = require("../../models/hardwareCategories");
 class HardwareCategoryService {
   static findAll(data) {
     return new Promise((resolve, reject) => {
-        HardwareCategory
-        .findAndCountAll(data)
-        .then((category) => {
-          resolve(category);
+      HardwareCategory.find(data)
+        .then((users) => {
+          resolve(users);
         })
         .catch((err) => {
           reject(err);
@@ -14,7 +13,7 @@ class HardwareCategoryService {
   }
   static findById(id) {
     return new Promise((resolve, reject) => {
-        HardwareCategory.findByPk(id, {
+      HardwareCategory.findByPk(id, {
         attributes: { exclude: ["nonce"] },
       })
         .then((account) => {
@@ -26,9 +25,8 @@ class HardwareCategoryService {
     });
   }
   static create(data) {
-    console.log(HardwareCategory,'modal');
     return new Promise((resolve, reject) => {
-        HardwareCategory.create(data)
+      HardwareCategory.create(data)
         .then((category) => {
           resolve(category);
         })

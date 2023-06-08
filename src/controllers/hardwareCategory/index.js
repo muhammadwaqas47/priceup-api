@@ -1,4 +1,4 @@
-const HardwareCategoryService = require("../../services/hardware_category");
+const HardwareCategoryService = require("../../services/hardwareCategory");
 const { handleResponse, handleError } = require("../../utils/responses");
 
 exports.getAll = async (req, res) => {
@@ -14,9 +14,7 @@ exports.getAll = async (req, res) => {
 exports.getCategory = async (req, res) => {};
 
 exports.saveCategory = async (req, res) => {
-    
   const data = { ...req.body };
-  console.log(data,'data');
   HardwareCategoryService.create(data)
     .then((category) => {
       handleResponse(

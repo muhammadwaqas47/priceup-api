@@ -8,6 +8,13 @@ const bodyParser = require("body-parser");
 
 const port = process.env.PORT || 5000;
 const hardwareCategoryRouter = require("./src/routes/hardwareCategory");
+const userRouter = require("./src/routes/users");
+const companyRouter = require("./src/routes/companies");
+const finishRouter = require("./src/routes/finishes");
+const hardwareRouter = require("./src/routes/hardwares");
+const layoutRouter = require("./src/routes/layouts");
+const glassTypeRouter = require("./src/routes/glassTypes");
+const glassTreatmentRouter = require("./src/routes/glassTreatments");
 
 app.use(
   cors({
@@ -19,7 +26,13 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use("/hardwareCategory", hardwareCategoryRouter);
-// app.use('/users', usersRouter);
+app.use("/users", userRouter);
+app.use("/companies", companyRouter);
+app.use("/finishes", finishRouter);
+app.use("/hardwares", hardwareRouter);
+app.use("/layouts", layoutRouter);
+app.use("/glassTypes", glassTypeRouter);
+app.use("/glassTreatments", glassTreatmentRouter);
 
 app.use("/", (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
