@@ -21,7 +21,7 @@ app.use(
     origin: "*",
     // methods: "GET,POST,PUT,DELETE",
     // credentials:true,
-    // optionSuccessStatus:200
+    // optionSuccessStatus:200,
   })
 );
 app.use(bodyParser.json());
