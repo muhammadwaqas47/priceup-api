@@ -13,6 +13,18 @@ class CompanyService {
     });
   }
 
+  static findBy(data) {
+    return new Promise((resolve, reject) => {
+      Company.findOne(data)
+        .then((company) => {
+          resolve(company);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
   static create(data) {
     return new Promise((resolve, reject) => {
       Company.create(data)

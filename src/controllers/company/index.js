@@ -11,7 +11,17 @@ exports.getAll = async (req, res) => {
     });
 };
 
-exports.getCompany = async (req, res) => {};
+exports.getCompany = async (req, res) => {
+  const { id } = req.params;
+  CompanyService.findBy({ _id: id })
+    .then((company) => {
+      handleResponse(res, 200, company);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
+
 exports.saveCompany = async (req, res) => {
   const data = { ...req.body };
   CompanyService.create(data)
