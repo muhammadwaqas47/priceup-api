@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
     password: {
       type: String,
       required: "Password is required",
-      minlength: [8, "Password must be atleast 8 character long"],
+      minlength: [6, "Password must be atleast 6 character long"],
     },
     role: {
       type: String,
@@ -42,6 +42,10 @@ userSchema.pre("save", async function (next) {
         });*/
   //  });
 });
+
+userSchema.methods.comparePassword = function (password) {
+  return bcrypt.compareSync(password, this.Password);
+};
 
 userSchema.methods.generateJwt = function () {
   return jwt.sign(

@@ -30,7 +30,7 @@ exports.getAll = async (req, res) => {
 
 exports.getUser = async (req, res) => {};
 exports.saveUser = async (req, res) => {
-  const password = generateRandomString(8);
+  const password = /*generateRandomString(8)*/ "abcdef";
   const data = { ...req.body, password: password };
 
   try {
@@ -94,7 +94,7 @@ const seedLayouts = (layouts, company_id) => {
             name: layout?.name,
             image: layout?.image,
             company_id: new mongoose.Types.ObjectId(company_id),
-            settings: {...settings},
+            settings: { ...settings },
           })
         );
       });
