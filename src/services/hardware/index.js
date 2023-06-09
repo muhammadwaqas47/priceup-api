@@ -11,6 +11,19 @@ class HardwareService {
         });
     });
   }
+
+  static findAllBy(data) {
+    return new Promise((resolve, reject) => {
+      Hardware.find(data)
+        .then((hardware) => {
+          resolve(hardware);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
   static findBy(data) {
     return new Promise((resolve, reject) => {
       Hardware.findOne(data)
