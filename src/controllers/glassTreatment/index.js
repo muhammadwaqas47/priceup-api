@@ -2,7 +2,8 @@ const GlassTreatmentService = require("../../services/glassTreatment");
 const { handleResponse, handleError } = require("../../utils/responses");
 
 exports.getAll = async (req, res) => {
-  GlassTreatmentService.findAll()
+  const company_id = req.company_id;
+  GlassTreatmentService.findAll({ company_id: company_id })
     .then((glassTreatments) => {
       handleResponse(res, 200, "All Glass Treatments", glassTreatments);
     })

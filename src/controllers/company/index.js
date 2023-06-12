@@ -1,4 +1,5 @@
 const CompanyService = require("../../services/company");
+const { nestedObjectsToDotNotation } = require("../../utils/common");
 const { handleResponse, handleError } = require("../../utils/responses");
 
 exports.getAll = async (req, res) => {
@@ -16,6 +17,30 @@ exports.getCompany = async (req, res) => {
   CompanyService.findBy({ _id: id })
     .then((company) => {
       handleResponse(res, 200, company);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
+
+exports.updateCompany = async (req, res) => {
+  const { id } = req.params;
+  const payload = { ...req.body };
+  const data = await nestedObjectsToDotNotation(payload);
+  CompanyService.update({ _id: id }, data)
+    .then((company) => {
+      handleResponse(res, 200, "Company succefully updated", company);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
+
+exports.deleteCompany = async (req, res) => {
+  const { id } = req.params;
+  CompanyService.delete({ _id: id })
+    .then((company) => {
+      handleResponse(res, 200, "Company succefully deleted", company);
     })
     .catch((err) => {
       handleError(res, err);

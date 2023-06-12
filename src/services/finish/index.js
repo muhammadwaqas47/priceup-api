@@ -16,8 +16,8 @@ class FinishService {
   static findBy(data) {
     return new Promise((resolve, reject) => {
       Finish.findOne(data)
-        .then((finishes) => {
-          resolve(finishes);
+        .then((finish) => {
+          resolve(finish);
         })
         .catch((err) => {
           reject(err);

@@ -27,8 +27,54 @@ exports.getAll = async (req, res) => {
       handleError(res, err);
     });
 };
-
-exports.getUser = async (req, res) => {};
+exports.loginUser = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const user = await UserService.findBy({ email: email });
+    if (!user) {
+      handleError(res, { statusCode: 400, message: "Incorrect Email address" });
+    } 
+    else if (!user.comparePassword(password)) {
+      handleError(res, { statusCode: 400, message: "Incorrect Credentials" });
+    } else if (user.comparePassword(password) && !user.status) {
+      handleError(res, { statusCode: 400, message: "User is not active" });
+    }
+     else {
+      const company = await CompanyService.findBy({ user_id: user._id });
+      if (!company) {
+        handleError(res, {
+          statusCode: 400,
+          message: "No Company is registered against this email!",
+        });
+      }
+      const token = await user.generateJwt(company._id);
+      handleResponse(res, 200, "You are successfully logged in!", { token });
+    }
+  } catch (err) {
+    handleError(res, err);
+  }
+};
+exports.getUser = async (req, res) => {
+  const { id } = req.params;
+  UserService.findBy({ _id: id })
+    .then((user) => {
+      handleResponse(res, 200, "User", user);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
+exports.updateUser = async (req, res) => {
+  const { id } = req.params;
+  const data = { ...req.body };
+  UserService.update({ _id: id }, data)
+    .then((user) => {
+      handleResponse(res, 200, "User", user);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
 exports.saveUser = async (req, res) => {
   const password = /*generateRandomString(8)*/ "abcdef";
   const data = { ...req.body, password: password };

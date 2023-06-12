@@ -25,6 +25,30 @@ class CompanyService {
     });
   }
 
+  static update(condition, data) {
+    return new Promise((resolve, reject) => {
+      Company.findOneAndUpdate(condition, data, { new: true })
+        .then((company) => {
+          resolve(company);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
+  static delete(condition) {
+    return new Promise((resolve, reject) => {
+      Company.findOneAndDelete(condition)
+        .then((company) => {
+          resolve(company);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
   static create(data) {
     return new Promise((resolve, reject) => {
       Company.create(data)

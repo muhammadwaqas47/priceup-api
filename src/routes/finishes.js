@@ -1,9 +1,10 @@
 const express = require("express");
-const {saveFinish,getFinish,getAll} = require("../controllers/finish");
+const { saveFinish, getFinish, getAll } = require("../controllers/finish");
+const { verifyToken } = require("../middlewares/authentication");
 const router = express.Router();
 
-router.get("/", getAll);
-router.get("/:id", getFinish);
-router.post("/save", saveFinish);
+router.get("/", verifyToken, getAll);
+router.get("/:id", verifyToken, getFinish);
+router.post("/save", verifyToken, saveFinish);
 
 module.exports = router;

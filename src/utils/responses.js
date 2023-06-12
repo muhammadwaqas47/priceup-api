@@ -1,19 +1,19 @@
 exports.handleResponse = (res, code, message, data) => {
-    var response = {};
-    if (data) {
-        response = {
-            code: code,
-            message: message,
-            data: data,
-        };
-    } else {
-        response = {
-            code: code,
-            message: message,
-            data: [],
-        };
-    }
-    return res.status(code).json(response);
+  var response = {};
+  if (data) {
+    response = {
+      code: code,
+      message: message,
+      data: data,
+    };
+  } else {
+    response = {
+      code: code,
+      message: message,
+      data: [],
+    };
+  }
+  return res.status(code).json(response);
 };
 
 /**
@@ -23,15 +23,15 @@ exports.handleResponse = (res, code, message, data) => {
  */
 
 exports.handleError = (res, err) => {
-    let { statusCode = 500, message, code = null } = err;
-    if (code == 20404) {
-        message = "The code has expired";
-    }
-    if (err.original) {
-        message = err.original.message;
-    }
-    res.status(statusCode).json({
-        code: statusCode,
-        message: message,
-    });
+  let { statusCode = 500, message, code = null } = err;
+  if (code == 20404) {
+    message = "The code has expired";
+  }
+  if (err.original) {
+    message = err.original.message;
+  }
+  res.status(statusCode).json({
+    code: statusCode,
+    message: message,
+  });
 };

@@ -44,12 +44,12 @@ userSchema.pre("save", async function (next) {
 });
 
 userSchema.methods.comparePassword = function (password) {
-  return bcrypt.compareSync(password, this.Password);
+  return bcrypt.compareSync(password, this.password);
 };
 
-userSchema.methods.generateJwt = function () {
+userSchema.methods.generateJwt = function (companyId) {
   return jwt.sign(
-    { id: this._id, name: this.name, email: this.email },
+    { id: this._id, name: this.name, email: this.email, company_id: companyId },
     process.env.JWT_SECRET,
     { expiresIn: "24h" }
   );

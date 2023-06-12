@@ -15,8 +15,8 @@ class HardwareService {
   static findAllBy(data) {
     return new Promise((resolve, reject) => {
       Hardware.find(data)
-        .then((hardware) => {
-          resolve(hardware);
+        .then((hardwares) => {
+          resolve(hardwares);
         })
         .catch((err) => {
           reject(err);
@@ -27,6 +27,42 @@ class HardwareService {
   static findBy(data) {
     return new Promise((resolve, reject) => {
       Hardware.findOne(data)
+        .then((hardware) => {
+          resolve(hardware);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
+  static update(condition, data) {
+    return new Promise((resolve, reject) => {
+      Hardware.findOneAndUpdate(condition, data, { new: true })
+        .then((hardware) => {
+          resolve(hardware);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
+  // static deleteFinishesItem(condition, data) {
+  //   return new Promise((resolve, reject) => {
+  //     Hardware.findOneAndUpdate(condition, data, { new: true })
+  //       .then((hardware) => {
+  //         resolve(hardware);
+  //       })
+  //       .catch((err) => {
+  //         reject(err);
+  //       });
+  //   });
+  // }
+
+  static delete(condition) {
+    return new Promise((resolve, reject) => {
+      Hardware.findOneAndDelete(condition)
         .then((hardware) => {
           resolve(hardware);
         })
