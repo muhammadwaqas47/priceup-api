@@ -40,7 +40,7 @@ exports.deleteCompany = async (req, res) => {
   const { id } = req.params;
   CompanyService.delete({ _id: id })
     .then((company) => {
-      handleResponse(res, 200, "Company deleted succefully", company);
+      handleResponse(res, 200, "Company deleted successfully", company);
     })
     .catch((err) => {
       handleError(res, err);
@@ -51,7 +51,7 @@ exports.saveCompany = async (req, res) => {
   const data = { ...req.body };
   CompanyService.create(data)
     .then((company) => {
-      handleResponse(res, 200, "Company created succefully", company);
+      handleResponse(res, 200, "Company created successfully", company);
     })
     .catch((err) => {
       handleError(res, err);

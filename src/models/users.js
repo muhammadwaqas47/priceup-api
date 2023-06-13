@@ -49,7 +49,13 @@ userSchema.methods.comparePassword = function (password) {
 
 userSchema.methods.generateJwt = function (companyId) {
   return jwt.sign(
-    { id: this._id, name: this.name, email: this.email, company_id: companyId },
+    {
+      id: this._id,
+      name: this.name,
+      email: this.email,
+      company_id: companyId,
+      role: this.role,
+    },
     process.env.JWT_SECRET,
     { expiresIn: "24h" }
   );
