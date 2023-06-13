@@ -25,6 +25,30 @@ class GlassTypeService {
     });
   }
 
+  static update(condition, data) {
+    return new Promise((resolve, reject) => {
+      GlassType.findOneAndUpdate(condition, data, { new: true })
+        .then((glassType) => {
+          resolve(glassType);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
+  static delete(condition) {
+    return new Promise((resolve, reject) => {
+      GlassType.findOneAndDelete(condition)
+        .then((glassType) => {
+          resolve(glassType);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
   static create(data) {
     return new Promise((resolve, reject) => {
       GlassType.create(data)

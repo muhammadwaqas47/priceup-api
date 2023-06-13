@@ -16,7 +16,7 @@ exports.getCompany = async (req, res) => {
   const { id } = req.params;
   CompanyService.findBy({ _id: id })
     .then((company) => {
-      handleResponse(res, 200, company);
+      handleResponse(res, 200, "Success", company);
     })
     .catch((err) => {
       handleError(res, err);
@@ -29,7 +29,7 @@ exports.updateCompany = async (req, res) => {
   const data = await nestedObjectsToDotNotation(payload);
   CompanyService.update({ _id: id }, data)
     .then((company) => {
-      handleResponse(res, 200, "Company succefully updated", company);
+      handleResponse(res, 200, "Company updated successfully", company);
     })
     .catch((err) => {
       handleError(res, err);
@@ -40,7 +40,7 @@ exports.deleteCompany = async (req, res) => {
   const { id } = req.params;
   CompanyService.delete({ _id: id })
     .then((company) => {
-      handleResponse(res, 200, "Company succefully deleted", company);
+      handleResponse(res, 200, "Company deleted succefully", company);
     })
     .catch((err) => {
       handleError(res, err);
@@ -51,7 +51,7 @@ exports.saveCompany = async (req, res) => {
   const data = { ...req.body };
   CompanyService.create(data)
     .then((company) => {
-      handleResponse(res, 200, "Company succefully created", company);
+      handleResponse(res, 200, "Company created succefully", company);
     })
     .catch((err) => {
       handleError(res, err);

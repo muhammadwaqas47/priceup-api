@@ -11,19 +11,19 @@ class HardwareCategoryService {
         });
     });
   }
-  static findById(id) {
+
+  static findBy(data) {
     return new Promise((resolve, reject) => {
-      HardwareCategory.findByPk(id, {
-        attributes: { exclude: ["nonce"] },
-      })
-        .then((account) => {
-          resolve(account);
+      HardwareCategory.findOne(data)
+        .then((category) => {
+          resolve(category);
         })
         .catch((err) => {
           reject(err);
         });
     });
   }
+
   static create(data) {
     return new Promise((resolve, reject) => {
       HardwareCategory.create(data)

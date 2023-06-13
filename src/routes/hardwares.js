@@ -14,11 +14,11 @@ const router = express.Router();
 
 router.get("/", verifyToken, getAll);
 router.get("/:id", verifyToken, getHardware);
-router.put("/:id", updateHardware);
-router.delete("/:id/:finishItemId", deleteHardwareFinishes);
-router.patch("/:id/", addHardwareFinishes);
-router.delete("/:id", deleteHardware);
+router.put("/:id", verifyToken, updateHardware);
+router.delete("/:id/:finishItemId", verifyToken, deleteHardwareFinishes);
+router.patch("/:id", verifyToken, addHardwareFinishes);
+router.delete("/:id", verifyToken, deleteHardware);
 router.get("/category/:slug", verifyToken, getHardwaresByCategory);
-router.post("/save", saveHardware);
+router.post("/save", verifyToken, saveHardware);
 
 module.exports = router;

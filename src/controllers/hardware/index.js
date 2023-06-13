@@ -17,7 +17,7 @@ exports.getHardware = async (req, res) => {
   const { id } = req.params;
   HardwareService.findBy({ _id: id })
     .then((hardware) => {
-      handleResponse(res, 200, hardware);
+      handleResponse(res, 200, "Success", hardware);
     })
     .catch((err) => {
       handleError(res, err);
@@ -30,7 +30,7 @@ exports.updateHardware = async (req, res) => {
   const updatedData = nestedObjectsToDotNotation(data);
   HardwareService.update({ _id: id }, updatedData)
     .then((hardware) => {
-      handleResponse(res, 200, hardware);
+      handleResponse(res, 200, "Hardware updated successfully", hardware);
     })
     .catch((err) => {
       handleError(res, err);
@@ -44,7 +44,12 @@ exports.deleteHardwareFinishes = async (req, res) => {
     { $pull: { finishes: { _id: finishItemId } } }
   )
     .then((hardware) => {
-      handleResponse(res, 200, hardware);
+      handleResponse(
+        res,
+        200,
+        "Hardware Finishes removed successfully",
+        hardware
+      );
     })
     .catch((err) => {
       handleError(res, err);
@@ -56,7 +61,12 @@ exports.addHardwareFinishes = async (req, res) => {
   const data = { ...req.body };
   HardwareService.update({ _id: id }, { $push: { finishes: data } })
     .then((hardware) => {
-      handleResponse(res, 200, hardware);
+      handleResponse(
+        res,
+        200,
+        "Hardware Finishes added successfully",
+        hardware
+      );
     })
     .catch((err) => {
       handleError(res, err);
@@ -67,7 +77,7 @@ exports.deleteHardware = async (req, res) => {
   const { id } = req.params;
   HardwareService.delete({ _id: id })
     .then((hardware) => {
-      handleResponse(res, 200, "Hardware succefully deleted", hardware);
+      handleResponse(res, 200, "Hardware deleted succefully", hardware);
     })
     .catch((err) => {
       handleError(res, err);
@@ -89,7 +99,7 @@ exports.saveHardware = async (req, res) => {
   const data = { ...req.body };
   HardwareService.create(data)
     .then((hardware) => {
-      handleResponse(res, 200, "Hardware successfully created", hardware);
+      handleResponse(res, 200, "Hardware created successfully", hardware);
     })
     .catch((err) => {
       handleError(res, err);

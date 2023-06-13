@@ -11,7 +11,16 @@ exports.getAll = async (req, res) => {
     });
 };
 
-exports.getCategory = async (req, res) => {};
+exports.getCategory = async (req, res) => {
+  const { id } = req.params;
+  HardwareCategoryService.findBy({ _id: id })
+    .then((category) => {
+      handleResponse(res, 200, "Success", category);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
 
 exports.saveCategory = async (req, res) => {
   const data = { ...req.body };
@@ -20,7 +29,7 @@ exports.saveCategory = async (req, res) => {
       handleResponse(
         res,
         200,
-        "Hardware Category succefully created",
+        "Hardware Category created succefully",
         category
       );
     })

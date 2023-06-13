@@ -48,18 +48,6 @@ class HardwareService {
     });
   }
 
-  // static deleteFinishesItem(condition, data) {
-  //   return new Promise((resolve, reject) => {
-  //     Hardware.findOneAndUpdate(condition, data, { new: true })
-  //       .then((hardware) => {
-  //         resolve(hardware);
-  //       })
-  //       .catch((err) => {
-  //         reject(err);
-  //       });
-  //   });
-  // }
-
   static delete(condition) {
     return new Promise((resolve, reject) => {
       Hardware.findOneAndDelete(condition)

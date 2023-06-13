@@ -25,6 +25,30 @@ class FinishService {
     });
   }
 
+  static update(condition, data) {
+    return new Promise((resolve, reject) => {
+      Finish.findOneAndUpdate(condition, data, { new: true })
+        .then((finish) => {
+          resolve(finish);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
+  static delete(condition) {
+    return new Promise((resolve, reject) => {
+      Finish.findOneAndDelete(condition)
+        .then((finish) => {
+          resolve(finish);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
   static create(data) {
     return new Promise((resolve, reject) => {
       Finish.create(data)
