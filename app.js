@@ -15,6 +15,7 @@ const hardwareRouter = require("./src/routes/hardwares");
 const layoutRouter = require("./src/routes/layouts");
 const glassTypeRouter = require("./src/routes/glassTypes");
 const glassTreatmentRouter = require("./src/routes/glassTreatments");
+const staffRouter = require("./src/routes/staffs");
 const indexRouter = require("./src/routes/index");
 
 app.use(
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/hardwareCategory", hardwareCategoryRouter);
 app.use("/users", userRouter);
+app.use("/staffs", staffRouter);
 app.use("/companies", companyRouter);
 app.use("/finishes", finishRouter);
 app.use("/hardwares", hardwareRouter);

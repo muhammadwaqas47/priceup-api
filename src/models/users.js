@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { userRoles } = require("../config/common");
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -32,15 +33,8 @@ const userSchema = new mongoose.Schema(
 );
 userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
-  // bcrypt.genSalt(10, async (err, salt) => {
   this.password = await bcrypt.hash(this.password, 10);
-  next(); /*, (err, hash) => {
-          //  console.log("In pre function ",this.Password);
-            this.Password = hash;
-           // this.saltSecret = salt;
-            
-        });*/
-  //  });
+  next();
 });
 
 userSchema.methods.comparePassword = function (password) {
@@ -54,7 +48,7 @@ userSchema.methods.generateJwt = function (companyId) {
       name: this.name,
       email: this.email,
       company_id: companyId,
-      role: this.role,
+      role: userRoles.ADMIN,
     },
     process.env.JWT_SECRET,
     { expiresIn: "24h" }
