@@ -86,7 +86,8 @@ exports.deleteHardware = async (req, res) => {
 
 exports.getHardwaresByCategory = async (req, res) => {
   const { slug } = req.params;
-  HardwareService.findAllBy({ hardware_category_slug: slug })
+  const company_id = req.company_id;
+  HardwareService.findAllBy({ hardware_category_slug: slug.company_id:company_id })
     .then((hardwares) => {
       handleResponse(res, 200, "All Hardwares", hardwares);
     })
