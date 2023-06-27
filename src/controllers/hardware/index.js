@@ -1,6 +1,8 @@
+const FinishService = require("../../services/finish");
 const HardwareService = require("../../services/hardware");
 const { nestedObjectsToDotNotation } = require("../../utils/common");
 const { handleResponse, handleError } = require("../../utils/responses");
+const { generateFinishes } = require("../user");
 
 exports.getAll = async (req, res) => {
   const company_id = req.company_id;
@@ -101,7 +103,10 @@ exports.getHardwaresByCategory = async (req, res) => {
 
 exports.saveHardware = async (req, res) => {
   const data = { ...req.body };
-  HardwareService.create(data)
+  const company_id = req.company_id;
+  const finishes = await FinishService.findAll({ company_id: company_id });
+  const generateFinishesFormat = await generateFinishes(finishes);
+  HardwareService.create({ ...data, finishes: generateFinishesFormat })
     .then((hardware) => {
       handleResponse(res, 200, "Hardware created successfully", hardware);
     })

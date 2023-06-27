@@ -382,7 +382,7 @@ const generateLayoutSettings = (settings, companyId) => {
     }
   });
 };
-const generateFinishes = (finish) => {
+exports.generateFinishes = (finish) => {
   return new Promise(async (resolve, reject) => {
     try {
       const hardwareFinishes = await finish?.flatMap((finish) => [
