@@ -97,7 +97,7 @@ exports.saveUser = async (req, res) => {
       company_id: company?.id,
     }); // get all finishes
 
-    const hardwareFinishes = await generateFinishes(userFinishes);
+    const hardwareFinishes = await this.generateFinishes(userFinishes);
     hardwares?.map(async (hardware) => {
       // create user hardwares
       await HardwareService.create({

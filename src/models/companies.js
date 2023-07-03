@@ -25,7 +25,7 @@ const companySchema = new mongoose.Schema(
       },
       pricingFactorStatus: {
         type: Boolean,
-        defautl: true,
+        default: true,
       },
     },
     fabricatingPricing: {

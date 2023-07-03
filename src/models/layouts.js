@@ -164,6 +164,10 @@ const layoutsSchema = new mongoose.Schema(
           default: 0,
         },
       },
+      measurementSides: {
+        type: Number,
+        default: 2,
+      },
     },
   },
   { timestamps: true }
