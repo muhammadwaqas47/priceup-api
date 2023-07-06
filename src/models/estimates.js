@@ -169,6 +169,10 @@ const estimateSchema = new mongoose.Schema(
         default: "",
       },
     ],
+    cost: {
+      type: Number,
+      required: "Total Cost is required",
+    },
   },
   { timestamps: true }
 );

@@ -25,6 +25,18 @@ class CustomerService {
     });
   }
 
+  static findByAndUpdate(condition, data, options) {
+    return new Promise((resolve, reject) => {
+      Customer.findOneAndUpdate(condition, data, options)
+        .then((customer) => {
+          resolve(customer);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
   static create(data) {
     return new Promise((resolve, reject) => {
       Customer.create(data)

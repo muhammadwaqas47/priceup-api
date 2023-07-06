@@ -1,5 +1,9 @@
+const CustomerService = require("../../services/customer");
 const EstimateService = require("../../services/estimate");
-const { nestedObjectsToDotNotation } = require("../../utils/common");
+const {
+  nestedObjectsToDotNotation,
+  getCurrentDate,
+} = require("../../utils/common");
 const { handleResponse, handleError } = require("../../utils/responses");
 
 exports.getAll = async (req, res) => {
@@ -13,19 +17,51 @@ exports.getAll = async (req, res) => {
     });
 };
 
-exports.getEstimate = async (req, res) => {};
+exports.getEstimate = async (req, res) => {
+  const { id } = req.params;
+  EstimateService.findBy({ _id: id })
+    .then(async (estimate) => {
+      handleResponse(res, 200, "Success", estimate);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
 
 exports.updateEstimate = async (req, res) => {};
 
 exports.deleteEstimate = async (req, res) => {};
 
 exports.saveEstimate = async (req, res) => {
+  const company_id = req.company_id;
   const data = { ...req.body };
-  EstimateService.create(data)
-    .then((estimate) => {
-      handleResponse(res, 200, "Estimate created successfully", estimate);
-    })
-    .catch((err) => {
-      handleError(res, err);
+  const customerData = data?.customerData;
+  if (!customerData) {
+    handleError(res, {
+      statusCode: 400,
+      message: "Customer Data is required!",
     });
+  }
+  try {
+    await CustomerService.findByAndUpdate(
+      {
+        email: customerData?.email,
+        company_id: company_id,
+      },
+      {
+        ...customerData,
+        name: `${customerData?.firstName} ${customerData?.lastName}`,
+        lastQuotedOn: getCurrentDate(),
+        company_id: company_id,
+      },
+      { upsert: true, new: true }
+    );
+    const estimate = await EstimateService.create({
+      ...data?.estimateData,
+      company_id: company_id,
+    });
+    handleResponse(res, 200, "Estimate created successfully", estimate);
+  } catch (error) {
+    handleError(res, error);
+  }
 };
