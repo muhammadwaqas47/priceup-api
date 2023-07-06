@@ -74,7 +74,8 @@ exports.deleteStaff = async (req, res) => {
 };
 
 exports.saveStaff = async (req, res) => {
-  const data = { ...req.body };
+  const password = /*generateRandomString(8)*/ "abcdef";
+  const data = { ...req.body, password: password };
   StaffService.create(data)
     .then((staff) => {
       handleResponse(res, 200, "Staff created successfully", staff);

@@ -6,7 +6,6 @@ exports.finishes = [
     partNumber: "1",
     holesNeeded: 1,
     cost: 0.0,
-    thickness: "both",
     // status: true,
   },
   {
@@ -16,7 +15,6 @@ exports.finishes = [
     partNumber: "1",
     holesNeeded: 1,
     cost: 0.0,
-    thickness: "both",
     // status: true,
   },
   {
@@ -26,7 +24,6 @@ exports.finishes = [
     partNumber: "1",
     holesNeeded: 1,
     cost: 0.0,
-    thickness: "both",
     // status: true,
   },
   {
@@ -36,7 +33,6 @@ exports.finishes = [
     partNumber: "1",
     holesNeeded: 1,
     cost: 0.0,
-    thickness: "both",
     // status: true,
   },
   {
@@ -46,7 +42,6 @@ exports.finishes = [
     partNumber: "1",
     holesNeeded: 1,
     cost: 0.0,
-    thickness: "both",
     // status: true,
   },
   {
@@ -56,7 +51,6 @@ exports.finishes = [
     partNumber: "1",
     holesNeeded: 1,
     cost: 0.0,
-    thickness: "both",
     // status: true,
   },
   {
@@ -66,7 +60,6 @@ exports.finishes = [
     partNumber: "1",
     holesNeeded: 1,
     cost: 0.0,
-    thickness: "both",
     // status: true,
   },
 ];

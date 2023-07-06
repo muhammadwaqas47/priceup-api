@@ -386,7 +386,7 @@ exports.generateFinishes = (finish) => {
   return new Promise(async (resolve, reject) => {
     try {
       const hardwareFinishes = await finish?.flatMap((finish) => [
-        // generate double record of every finish of user
+        // generate hardware finishes of user
         {
           name: finish?.name,
           slug: finish?.slug,
@@ -394,18 +394,6 @@ exports.generateFinishes = (finish) => {
           partNumber: finish?.partNumber,
           holesNeeded: finish?.holesNeeded,
           cost: finish?.cost,
-          thickness: "1/2",
-          status: "false",
-          finish_id: finish?.id,
-        },
-        {
-          name: finish?.name,
-          slug: finish?.slug,
-          image: finish?.image,
-          partNumber: finish?.partNumber,
-          holesNeeded: finish?.holesNeeded,
-          cost: finish?.cost,
-          thickness: "3/8",
           status: "false",
           finish_id: finish?.id,
         },

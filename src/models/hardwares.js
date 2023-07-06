@@ -47,10 +47,10 @@ const hardware = new mongoose.Schema(
           type: Number,
           default: 0.0,
         },
-        thickness: {
-          type: String,
-          required: "Thickness value is required",
-        },
+        // thickness: {
+        //   type: String,
+        //   required: "Thickness value is required",
+        // },
         status: {
           type: Boolean,
           default: false,

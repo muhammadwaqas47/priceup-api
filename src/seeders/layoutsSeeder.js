@@ -31,6 +31,7 @@ exports.layouts = [
         people: 2,
         hours: 2,
       },
+      measurementSides: 2,
     },
   },
 ];

@@ -22,7 +22,7 @@ const finishSchema = new mongoose.Schema(
     },
     holesNeeded: {
       type: Number,
-      required: "Holes value is required",
+      default: 0,
     },
     cost: {
       type: Number,
@@ -32,10 +32,10 @@ const finishSchema = new mongoose.Schema(
     //   type: Number,
     //   default: 0.0,
     // },
-    thickness: {
-      type: String,
-      required: "Thickness value is required",
-    },
+    // thickness: {
+    //   type: String,
+    //   required: "Thickness value is required",
+    // },
     status: {
       type: Boolean,
       default: false,
