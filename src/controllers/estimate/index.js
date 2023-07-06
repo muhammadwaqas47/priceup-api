@@ -30,7 +30,16 @@ exports.getEstimate = async (req, res) => {
 
 exports.updateEstimate = async (req, res) => {};
 
-exports.deleteEstimate = async (req, res) => {};
+exports.deleteEstimate = async (req, res) => {
+  const { id } = req.params;
+  EstimateService.delete({ _id: id })
+    .then((estimate) => {
+      handleResponse(res, 200, "Estimate deleted successfully", estimate);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
 
 exports.saveEstimate = async (req, res) => {
   const company_id = req.company_id;
