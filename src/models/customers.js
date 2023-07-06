@@ -17,6 +17,10 @@ const customerSchema = new mongoose.Schema(
       type: String,
       default: "images/staff/default.jpg",
     },
+    address: {
+      type: String,
+      default: "",
+    },
     lastQuotedOn: {
       type: String,
       default: "",

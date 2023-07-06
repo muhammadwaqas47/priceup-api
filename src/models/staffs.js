@@ -26,6 +26,14 @@ const staffSchema = new mongoose.Schema(
       // required: "Password is required",
       // minlength: [8, "Password must be atleast 8 character long"],
     },
+    lastQuoted: {
+      type: String,
+      default: "",
+    },
+    totalQuoted: {
+      type: Number,
+      default: 0.0,
+    },
     status: {
       type: Boolean,
       default: true,
