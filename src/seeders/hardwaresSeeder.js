@@ -177,4 +177,40 @@ exports.hardwares = [
     slug: "66-header",
     hardware_category_slug: "header",
   },
+  {
+    name: "Towel Bars",
+    image: "images/hardwares/default.png",
+    slug: "towel-bars",
+    hardware_category_slug: "add-ons",
+  },
+  {
+    name: "Sleeve Over",
+    image: "images/hardwares/default.png",
+    slug: "sleeve-over",
+    hardware_category_slug: "add-ons",
+  },
+  {
+    name: "Offset HVY Clamps",
+    image: "images/hardwares/default.png",
+    slug: "offset-hvy-clamps",
+    hardware_category_slug: "add-ons",
+  },
+  {
+    name: "Sandblasting",
+    image: "images/hardwares/default.png",
+    slug: "sandblasting",
+    hardware_category_slug: "add-ons",
+  },
+  {
+    name: "Sandblasting",
+    image: "images/hardwares/default.png",
+    slug: "sandblasting",
+    hardware_category_slug: "add-ons",
+  },
+  {
+    name: "Grids",
+    image: "images/hardwares/default.png",
+    slug: "grids",
+    hardware_category_slug: "add-ons",
+  },
 ];

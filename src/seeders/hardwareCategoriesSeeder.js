@@ -34,4 +34,9 @@ exports.hardwareCategories = [
     slug: "transom",
     status: true,
   },
+  {
+    name: "Add-Ons",
+    slug: "add-ons",
+    status: true,
+  },
 ];

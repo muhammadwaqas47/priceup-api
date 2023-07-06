@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const quoteSchema = new mongoose.Schema(
+const estimateSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -20,7 +20,7 @@ const quoteSchema = new mongoose.Schema(
     },
     hardwareFinishes: {
       type: mongoose.Schema.Types.ObjectId,
-      default: null,
+      required: "Hardware reference is required",
     },
     handles: {
       type: {
@@ -114,28 +114,63 @@ const quoteSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       default: null,
     },
+    addOns: [
+      {
+        type: { type: mongoose.Schema.Types.ObjectId, default: null },
+        count: {
+          type: Number,
+          default: 0,
+        },
+      },
+    ],
+    oneInchHoles: {
+      type: Number,
+      default: 0,
+    },
+    hingeCut: {
+      type: Number,
+      default: 0,
+    },
+    clampCut: {
+      type: Number,
+      default: 0,
+    },
+    notch: {
+      type: Number,
+      default: 0,
+    },
     outages: {
       type: Number,
       default: 0,
     },
-    transom: {
-      type: mongoose.Schema.Types.ObjectId,
-      default: null,
-    },
-    people: {
-        type: Number,
-        default: 0,
-      },
-    hours: {
-        type: Number,
-        default: 0,
-      },
-    measurements: {
+    mitre: {
       type: Number,
-      default: 2,
+      default: 0,
     },
+    polish: {
+      type: Number,
+      default: 0,
+    },
+    // transom: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //   default: null,
+    // },
+    people: {
+      type: Number,
+      default: 0,
+    },
+    hours: {
+      type: Number,
+      default: 0,
+    },
+    measurements: [
+      {
+        type: String,
+        default: "",
+      },
+    ],
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("quotes", quoteSchema);
+module.exports = mongoose.model("estimates", estimateSchema);
