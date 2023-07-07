@@ -73,6 +73,17 @@ exports.updateUser = async (req, res) => {
       handleError(res, err);
     });
 };
+exports.updateUserStatus = async (req, res) => {
+  const { id } = req.params;
+  const data = { ...req.body };
+  UserService.update({ _id: id }, { status: data?.status })
+    .then((user) => {
+      handleResponse(res, 200, "User status updated successfully", user);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
 exports.saveUser = async (req, res) => {
   const password = /*generateRandomString(8)*/ "abcdef";
   const data = { ...req.body, password: password };

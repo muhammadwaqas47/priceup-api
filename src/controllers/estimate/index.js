@@ -28,7 +28,18 @@ exports.getEstimate = async (req, res) => {
     });
 };
 
-exports.updateEstimate = async (req, res) => {};
+exports.updateEstimate = async (req, res) => {
+  const { id } = req.params;
+  const payload = { ...req.body };
+  const data = await nestedObjectsToDotNotation(payload);
+  EstimateService.update({ _id: id }, data)
+    .then((estimate) => {
+      handleResponse(res, 200, "Estimate updated successfully", estimate);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};
 
 exports.deleteEstimate = async (req, res) => {
   const { id } = req.params;
