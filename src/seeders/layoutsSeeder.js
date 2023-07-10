@@ -33,6 +33,8 @@ exports.layouts = [
       },
       measurementSides: 2,
     },
+  },
+  {
     name: "Door & Panel",
     image: "images/layouts/layout_2.png",
     settings: {
