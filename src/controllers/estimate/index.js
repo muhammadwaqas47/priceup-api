@@ -3,6 +3,7 @@ const EstimateService = require("../../services/estimate");
 const {
   nestedObjectsToDotNotation,
   getCurrentDate,
+  getListsData,
 } = require("../../utils/common");
 const { handleResponse, handleError } = require("../../utils/responses");
 
@@ -26,6 +27,16 @@ exports.getEstimate = async (req, res) => {
     .catch((err) => {
       handleError(res, err);
     });
+};
+
+exports.getEstimateListsData = async (req, res) => {
+  const company_id = req.company_id;
+  try {
+    const listsData = await getListsData(company_id);
+    handleResponse(res, 200, "Success", listsData);
+  } catch (error) {
+    handleError(res, err);
+  }
 };
 
 exports.updateEstimate = async (req, res) => {

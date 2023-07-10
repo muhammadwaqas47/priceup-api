@@ -1,3 +1,8 @@
+const FinishService = require("../services/finish");
+const GlassTreatmentService = require("../services/glassTreatment");
+const GlassTypeService = require("../services/glassType");
+const HardwareService = require("../services/hardware");
+
 exports.generateRandomString = (length) => {
   let result = "";
   const characters =
@@ -52,4 +57,75 @@ exports.getCurrentDate = () => {
   const year = date.getFullYear();
 
   return `${day}-${month}-${year}`;
+};
+
+exports.getListsData = (company_id) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const finishes = await FinishService.findAll({ company_id: company_id });
+      const handles = await HardwareService.findAllBy({
+        hardware_category_slug: "handles",
+        company_id: company_id,
+      });
+      const hinges = await HardwareService.findAllBy({
+        hardware_category_slug: "hinges",
+        company_id: company_id,
+      });
+      const mountingChannel = await HardwareService.findAllBy({
+        hardware_category_slug: "mounting-channels",
+        company_id: company_id,
+      });
+
+      const mountingClamps = await HardwareService.findAllBy({
+        hardware_category_slug: "mounting-clamps",
+        company_id: company_id,
+      });
+
+      const slidingDoorSystem = await HardwareService.findAllBy({
+        hardware_category_slug: "sliding-door-system",
+        company_id: company_id,
+      });
+      const transom = await HardwareService.findAllBy({
+        hardware_category_slug: "transom",
+        company_id: company_id,
+      });
+      const header = await HardwareService.findAllBy({
+        hardware_category_slug: "header",
+        company_id: company_id,
+      });
+      const addOns = await HardwareService.findAllBy({
+        hardware_category_slug: "add-ons",
+        company_id: company_id,
+      });
+      const glassType = await GlassTypeService.findAll({
+        company_id: company_id,
+      });
+      const glassTreatment = await GlassTreatmentService.findAll({
+        company_id: company_id,
+      });
+
+      const listData = {
+        hardwareFinishes: finishes,
+        handles: handles,
+        hinges: hinges,
+        pivotHingeOption: hinges,
+        heavyDutyOption: hinges,
+        heavyPivotOption: hinges,
+        channelOrClamps: ["Channel", "Clamps"],
+        mountingChannel: mountingChannel,
+        wallClamp: mountingClamps,
+        sleeveOver: mountingClamps,
+        glassToGlass: mountingClamps,
+        glassType: glassType,
+        slidingDoorSystem: slidingDoorSystem,
+        transom: transom,
+        header: header,
+        glassTreatment: glassTreatment,
+        addOns: addOns,
+      };
+      resolve(listData);
+    } catch (error) {
+      reject(error);
+    }
+  });
 };
