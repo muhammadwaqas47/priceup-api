@@ -29,3 +29,15 @@ exports.loginAdmin = async (req, res) => {
     handleError(res, err);
   }
 };
+
+exports.saveAdmin = async (req, res) => {
+  const password = /*generateRandomString(8)*/ "abcdef";
+  const data = { ...req.body, password: password };
+  AdminService.create(data)
+    .then((admin) => {
+      handleResponse(res, 200, "Admin crated successfully", admin);
+    })
+    .catch((err) => {
+      handleError(res, err);
+    });
+};

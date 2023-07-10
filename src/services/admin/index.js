@@ -12,6 +12,30 @@ class AdminService {
         });
     });
   }
+
+  static findBy(data) {
+    return new Promise((resolve, reject) => {
+      Admin.findOne(data)
+        .then((admin) => {
+          resolve(admin);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
+  static create(data) {
+    return new Promise((resolve, reject) => {
+      Admin.create(data)
+        .then((admin) => {
+          resolve(admin);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
 }
 
 module.exports = AdminService;
