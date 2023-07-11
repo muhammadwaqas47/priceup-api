@@ -25,6 +25,18 @@ class GlassTreatmentService {
     });
   }
 
+  static delete(condition) {
+    return new Promise((resolve, reject) => {
+      GlassTreatment.findOneAndDelete(condition)
+        .then((glassTreatment) => {
+          resolve(glassTreatment);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
   static create(data) {
     return new Promise((resolve, reject) => {
       GlassTreatment.create(data)
