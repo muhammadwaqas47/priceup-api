@@ -34,7 +34,7 @@ exports.getEstimateListsData = async (req, res) => {
   try {
     const listsData = await getListsData(company_id);
     handleResponse(res, 200, "Success", listsData);
-  } catch (error) {
+  } catch (err) {
     handleError(res, err);
   }
 };
