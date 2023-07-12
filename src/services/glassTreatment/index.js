@@ -37,6 +37,18 @@ class GlassTreatmentService {
     });
   }
 
+  static update(condition, data) {
+    return new Promise((resolve, reject) => {
+      GlassTreatment.findOneAndUpdate(condition, data, { new: true })
+        .then((glassTreatment) => {
+          resolve(glassTreatment);
+        })
+        .catch((err) => {
+          reject(err);
+        });
+    });
+  }
+
   static create(data) {
     return new Promise((resolve, reject) => {
       GlassTreatment.create(data)
