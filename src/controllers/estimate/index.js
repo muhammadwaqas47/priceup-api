@@ -33,7 +33,13 @@ exports.getEstimateListsData = async (req, res) => {
   const company_id = req.company_id;
   try {
     const listsData = await getListsData(company_id);
-    handleResponse(res, 200, "Success", listsData);
+    const companySettings = await CompanyService.findBy({ _id: company_id });
+
+    handleResponse(res, 200, "Success", {
+      ...listsData,
+      miscPricing: companySettings?.miscPricing,
+      fabricatingPricing: companySettings?.fabricatingPricing,
+    });
   } catch (err) {
     handleError(res, err);
   }

@@ -79,6 +79,10 @@ const estimateSchema = new mongoose.Schema(
         type: mongoose.Schema.Types.ObjectId,
         default: null,
       },
+      activeType: {
+        type: String,
+        default: "clamps",
+      },
     },
     glassType: {
       type: {
