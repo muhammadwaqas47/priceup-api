@@ -120,13 +120,18 @@ const estimateSchema = new mongoose.Schema(
     },
     addOns: [
       {
-        type: { type: mongoose.Schema.Types.ObjectId, default: null },
-        count: {
-          type: Number,
-          default: 0,
-        },
+        type: mongoose.Schema.Types.ObjectId,
+        default: null,
       },
     ],
+    sleeveOverCount: {
+      type: number,
+      default: 0,
+    },
+    towelBarsCount: {
+      type: Number,
+      default: 0,
+    },
     oneInchHoles: {
       type: Number,
       default: 0,
@@ -169,8 +174,14 @@ const estimateSchema = new mongoose.Schema(
     },
     measurements: [
       {
-        type: String,
-        default: "",
+        key: {
+          type: String,
+          default: "",
+        },
+        type: {
+          type: String,
+          default: "",
+        },
       },
     ],
     cost: {
