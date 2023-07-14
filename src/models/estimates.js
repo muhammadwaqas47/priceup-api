@@ -178,7 +178,7 @@ const estimateSchema = new mongoose.Schema(
           type: String,
           default: "",
         },
-        type: {
+        value: {
           type: String,
           default: "",
         },
