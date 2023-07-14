@@ -108,13 +108,19 @@ exports.saveUser = async (req, res) => {
       company_id: company?.id,
     }); // get all finishes
 
-    const hardwareFinishes = await this.generateFinishes(userFinishes);
+    // const hardwareFinishes = await this.generateFinishes(userFinishes);
     hardwares?.map(async (hardware) => {
+      const finishes = hardware?.finishes?.map((hardwareFinish) => {
+        const finish = userFinishes?.find(
+          (item) => item?.slug === hardwareFinish?.finish_id
+        );
+        return { ...hardwareFinish, finish_id: finish._id };
+      });
       // create user hardwares
       await HardwareService.create({
         ...hardware,
         company_id: company?.id,
-        finishes: hardwareFinishes,
+        finishes: finishes,
       });
     });
     glassTypes?.map(async (glassType) => {

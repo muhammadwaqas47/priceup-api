@@ -125,7 +125,7 @@ const estimateSchema = new mongoose.Schema(
       },
     ],
     sleeveOverCount: {
-      type: number,
+      type: Number,
       default: 0,
     },
     towelBarsCount: {
